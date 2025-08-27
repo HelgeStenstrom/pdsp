@@ -1,15 +1,14 @@
 use std::sync::RwLock;
 
-use crate::loadable::Loadable;
-use crate::sample::sample::*;
 use crate::buffers::*;
 use crate::event::*;
 use crate::float::*;
-use crate::float::sample::*;
+use crate::loadable::Loadable;
+use crate::sample::sample::*;
 
-use hound::{Sample, WavReader};
-use std::io::BufReader;
+use hound::Sample;
 use std::fs::File;
+use std::io::BufReader;
 
 use lazy_static::*;
 
@@ -86,7 +85,7 @@ impl FileLoad<SampleFile<Stereo>> for SampleFile<Stereo> {
 }*/
 
 fn load_sample_file_i16(path: &str, mut reader: hound::WavReader<BufReader<File>>, channels: u16) -> SampleFile<Stereo<f32>> {
-    let sample_rate = reader.spec().sample_rate;
+    reader.spec().sample_rate;
     let size = reader.samples::<i16>().len();
     let mut buffer_new = Buffer::init(Stereo { left: 0.0, right: 0.0 }, size / 2);
 

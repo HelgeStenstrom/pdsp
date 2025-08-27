@@ -19,6 +19,10 @@ pub trait Sample: Copy + Clone + From<Self::Float>
 
     fn mono(self) -> Self::Float;
 
+    fn channels(self) -> usize {
+        Self::CHANNELS
+    }
+
     fn sin(self) -> Self {
         self.apply(Float::sin)
     }

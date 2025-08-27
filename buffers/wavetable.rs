@@ -2,10 +2,6 @@ use std::{io::BufReader, fs::File};
 
 use crate::{Float, Loadable};
 
-fn temp() {
-    let wavetable = Wavetable::<f32, 2048>::new();
-}
-
 pub struct Wavetable<F: Float, const C: usize> {
     pub table: Vec<[F; C]>
 }
@@ -43,7 +39,7 @@ impl<F: Float, const C: usize> Loadable for Wavetable<F, C> {
     }
 }
 
-fn load_wavetable<F: Float, const C: usize>(path: &str, mut reader: hound::WavReader<BufReader<File>>) -> Result<Wavetable<F, C>, String> {
+fn load_wavetable<F: Float, const C: usize>(_path: &str, mut reader: hound::WavReader<BufReader<File>>) -> Result<Wavetable<F, C>, String> {
     let mut wavetable = Wavetable::<F, C>::new();
     let length = wavetable.len();
 

@@ -1,11 +1,8 @@
-use std::marker::PhantomData;
-
-use crate::traits::*;
-use crate::float::sample::*;
-use crate::routing::param::*;
 use crate::routing::chain::*;
 use crate::routing::merge::*;
 use crate::routing::parallel::*;
+use crate::routing::param::*;
+use crate::traits::*;
 
 #[derive(Copy, Clone)]
 pub struct AudioNode<P>(pub P);
@@ -37,7 +34,7 @@ impl<Out, G> Generator for AudioNode<G>
     type Output = Out;
 
     fn reset(&mut self) {}
-    fn prepare(&mut self, sample_rate: u32, block_size: usize) {}
+    fn prepare(&mut self, _sample_rate: u32, _block_size: usize) {}
 
     fn generate(&mut self) -> Self::Output {
         self.0.generate()

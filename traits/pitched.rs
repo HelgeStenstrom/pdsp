@@ -1,4 +1,3 @@
-use crate::{Block, NoteMessage};
 
 pub trait Pitched {
     fn get_pitch(&self) -> f32;
